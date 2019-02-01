@@ -1,10 +1,10 @@
 # lazyLoad-preLoad
 
 ### 一：预加载:事先把网页的图片加载到本地，之后就直接到缓存那里拿图片。
-1.1 有序加载
+1.1 有序加载  
 ![ordered.png](./docs/ordered.png)
 
-1.2 无序加载
+1.2 无序加载  
 ![unordered.png](./docs/unordered.png)
 
 ### 二：懒加载：当图片出现在可视化窗口之后，图片才加载到本地
