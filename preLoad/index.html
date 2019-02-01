@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>图片预加载</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <style>
         body,html{
             width: 100%;
@@ -29,19 +30,17 @@
             <a href="javascript:;" class="btn" data-dirction="next">下一页</a>
         </p>
     </div>
-    <!--<div class="loading">-->
-           <!--<div class="process">0%</div>-->
-    <!--</div>-->
-    <script src="jquery-2.1.3.min.js"></script>
     <script src="proload.js"></script>
     <script>
         var imgs=[
             'http://pic1.win4000.com/wallpaper/9/579c3fbaa2918.jpg',
-            'http://img.tuku.cn/file_big/201404/7214f32de01b4fd8b0872522ead3480b.jpg',
-            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507396494524&di=9dab7ea72080994182b4e0f748c65091&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fwallpaper%2F1501%2F13%2Fc0%2F1823997_1421130296700.jpg',
+            'https://tse3-mm.cn.bing.net/th?id=OIP.rO8sgyrW2QEaLYhogsU-5QHaF7&w=259&h=160&c=7&o=5&pid=1.7',
             'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507396544706&di=7b83b4ba4b6b4952a076bcb701a54d77&imgtype=jpg&src=http%3A%2F%2Fimg1.imgtn.bdimg.com%2Fit%2Fu%3D3804939088%2C891611583%26fm%3D214%26gp%3D0.jpg',
-            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507396494761&di=b34fdf8f57cd2df851f4a38dbea91035&imgtype=0&src=http%3A%2F%2Fpic.5442.com%2F2013%2F0504%2F02%2F10.jpg'
+            'https://tse4-mm.cn.bing.net/th?id=OIP.U_pSk4kjstbjnfYu3QnJyQHaFZ&w=243&h=174&c=7&o=5&pid=1.7'
         ];
+        var index = 0,
+            len = imgs.length,
+            a = 1;
         $.preload(imgs, {
             order: 'unordered',
             each: function (count) {
@@ -51,48 +50,10 @@
                 console.log('全部加载完成');
             }
         });
+        $(".btn").on('click',function(){
+            $(this).context.dataset.dirction == "prev"? index = Math.max(0,--index):index = Math.min(len-1,++index);
+            $("#img").attr('src',imgs[index]);
+        })
     </script>
-    <!--<script>-->
-        <!--var imgs=[-->
-                <!--'http://pic1.win4000.com/wallpaper/9/579c3fbaa2918.jpg',-->
-                <!--'http://img.tuku.cn/file_big/201404/7214f32de01b4fd8b0872522ead3480b.jpg',-->
-                <!--'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507396494524&di=9dab7ea72080994182b4e0f748c65091&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fwallpaper%2F1501%2F13%2Fc0%2F1823997_1421130296700.jpg',-->
-                <!--'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507396544706&di=7b83b4ba4b6b4952a076bcb701a54d77&imgtype=jpg&src=http%3A%2F%2Fimg1.imgtn.bdimg.com%2Fit%2Fu%3D3804939088%2C891611583%26fm%3D214%26gp%3D0.jpg',-->
-                <!--'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507396494761&di=b34fdf8f57cd2df851f4a38dbea91035&imgtype=0&src=http%3A%2F%2Fpic.5442.com%2F2013%2F0504%2F02%2F10.jpg'-->
-        <!--];-->
-        <!--var index = 0,-->
-                <!--len = imgs.length;-->
-                <!--a = 1;-->
-<!--//        $.each(imgs,function(a,src){-->
-<!--//            var imgObj = new Image();-->
-<!--////            console.log(a);-->
-<!--//            $(imgObj).on("load",function(){-->
-<!--//                console.log("第"+i+"张加载完毕");-->
-<!--//                ++i;-->
-<!--//            })-->
-<!--//        });-->
-        <!--var newimages=[];-->
-        <!--for (var i=0; i<imgs.length; i++) {-->
-            <!--newimages[i] = new Image();-->
-            <!--newimages[i].src = imgs[i];-->
-            <!--newimages[i].onload = function () {-->
-                <!--$(".process").html(Math.round(a/len *100)+'%');-->
-                <!--if(a == len){$(".loading").hide();}-->
-                <!--console.log(a);-->
-                <!--++a;-->
-            <!--};-->
-        <!--}-->
-
-        <!--$(".btn").on('click',function(){-->
-            <!--if($(this).context.dataset.dirction == "prev"){-->
-                <!--console.log("上一张");-->
-               <!--index = Math.max(0,&#45;&#45;index);-->
-            <!--}else {-->
-                <!--console.log("下一张");-->
-                <!--index = Math.min(len-1,++index);-->
-            <!--}-->
-            <!--$("#img").attr('src',imgs[index]);-->
-        <!--})-->
-    <!--</script>-->
 </body>
 </html>
